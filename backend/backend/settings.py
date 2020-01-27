@@ -129,3 +129,8 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+# Simple JWT
+SIMPLE_JWT = {
+    'AUTH_COOKIE': 'Authorization',
+}
