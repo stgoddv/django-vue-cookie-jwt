@@ -33,7 +33,7 @@ Kickstart 项目，用于在 Django 和 VueJ 之间使用基于 jwt cookie 的�
 
 ### Contribution
 
-This is a pretty basic project that I did in a couple weeks. If you want to contribute improving this, adding more functionality of fixing issues I'll be glad to receive PR.
+This is a pretty basic project that I did in a couple hours. If you want to contribute improving this, adding more functionality of fixing issues I'll be glad to receive PR.
 
 ### License
 
