@@ -1,101 +1,64 @@
 <template>
   <div class="home">
-    <h1>Testing Auth</h1>
+    <h1 v-if="fetchingData">Loading...</h1>
+
+    <div v-if="login">
+      <img class="max-w-md mx-auto my-3" src="@/assets/welcome.svg" alt="" />
+      <p class="text-2xl capitalize">Welcome {{ username }}!</p>
+      <button
+        class="text-lg mt-8 p-3 rounded-lg shadow-md mx-auto border cursor-pointer hover:shadow-lg"
+        style="background-color: #667eea; color: white; transition: box-shadow 0.3s;"
+        @click="logout"
+        :disabled="fetchingData"
+      >
+        Logout
+      </button>
+    </div>
+
+    <div v-else class="shadow-md max-w-xs mx-auto p-5 rounded-lg border">
+      <img class="p-3" src="@/assets/login.svg" alt="" />
+      <p class="text-lg mb-1">You're not logged in.</p>
+      <p class="text-sm">Please register or login.</p>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { api } from "@/services/backend";
 
 export default {
   name: "home",
-  components: {},
-  async created() {
-    const options = {
-      baseURL: "http://127.0.0.1:8000",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "http://127.0.0.1:8000",
-        "Access-Control-Allow-Credentials": true
-      },
-      xsrfCookieName: "csrftoken",
-      xsrfHeaderName: "X-CSRFTOKEN",
-      withCredentials: true,
-      timeout: 5000
+  data() {
+    return {
+      fetchingData: true,
+      login: false,
+      username: ""
     };
-
-    const instance = axios.create(options);
-
-    // console.log("register new user");
-    // let payload = {
-    //   email: "joao@gmail.com",
-    //   username: "joao",
-    //   password: "adminadmin"
-    // };
-    // let r = await instance.post("auth/users/", payload);
-    // console.log(r);
-
-    // console.log("asking for data unauthorized");
-    // try {
-    //   let r = await instance.get("test/");
-    //   console.log(r);
-    // } catch (error) {
-    //   if (error.response.status === 401) {
-    //     console.log("Unauthorized");
-    //   }
-    // }
-
-    // console.log("Login in");
-    // let payload = {
-    //   // username: "admin",
-    //   // password: "adminadmin",
-    //   username: "joao",
-    //   password: "adminadmin"
-    // };
-    // let r = await instance.post("api/token/", payload);
-    // console.log(r);
-
-    // console.log("asking for data unauthorized");
-    // try {
-    //   r = await instance.get("test/");
-    //   console.log(r);
-    // } catch (error) {
-    //   console.log(error.response);
-    // }
-
-    // console.log("Login out");
-    // try {
-    //   let r = await instance.post("api/token/delete/");
-    //   console.log(r);
-    // } catch (error) {
-    //   console.log(error.response);
-    // }
-
-    // Request refresh
-    // console.log("requesting refresh");
-    // try {
-    //   r = await instance.post("api/token/refresh/");
-    //   console.log(r);
-    // } catch (error) {
-    //   console.log(error.response);
-    // }
-
-    // console.log("Login out");
-    // try {
-    //   let r = await instance.post("api/token/delete/");
-    //   console.log(r);
-    // } catch (error) {
-    //   console.log(error.response);
-    // }
-
-    // // Request refresh
-    // console.log("requesting refresh");
-    // try {
-    //   r = await instance.post("api/token/refresh/");
-    //   console.log(r);
-    // } catch (error) {
-    //   console.log(error.response);
-    // }
+  },
+  methods: {
+    async logout() {
+      this.fetchingData = true;
+      try {
+        await api.post("api/token/delete/");
+      } catch (error) {
+        console.log(error);
+      }
+      this.username = "";
+      this.fetchingData = false;
+      this.login = false;
+    }
+  },
+  async created() {
+    try {
+      let r = await api.get("auth/users/me/");
+      this.username = r.data.username;
+      this.fetchingData = false;
+      this.login = true;
+    } catch (error) {
+      this.username = "";
+      this.fetchingData = false;
+      this.login = false;
+    }
   }
 };
 </script>

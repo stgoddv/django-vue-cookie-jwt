@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+from datetime import timedelta
 from corsheaders.defaults import default_headers
 
 import os
@@ -153,4 +154,5 @@ REST_FRAMEWORK = {
 # Simple JWT
 SIMPLE_JWT = {
     'AUTH_COOKIE': 'Authorization',
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
 }
