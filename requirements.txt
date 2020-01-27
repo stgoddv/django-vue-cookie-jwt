@@ -2,3 +2,5 @@ Django
 djangorestframework
 markdown       
 django-filter 
+-e git+http://github.com/NiyazNz/django-rest-framework-simplejwt@jwt_cookie#egg=djangorestframework_simplejwt
+drf-yasg
