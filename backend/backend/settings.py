@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 
     # Installed
     'rest_framework',
+    'djoser',
     'corsheaders',
 
     # Project apps

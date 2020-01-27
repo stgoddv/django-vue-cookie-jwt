@@ -30,5 +30,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/delete/', TokenCookieDeleteView.as_view(), name='token_delete'),
 
-    path('auth/', include('authentication.api.urls')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
+    path('test/', include('authentication.api.urls')),
 ]

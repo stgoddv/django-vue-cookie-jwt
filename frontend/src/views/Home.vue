@@ -26,52 +26,63 @@ export default {
 
     const instance = axios.create(options);
 
-    console.log("asking for data unauthorized");
-    try {
-      let r = await instance.get("auth/");
-      console.log(r);
-    } catch (error) {
-      if (error.response.status === 401) {
-        console.log("Unauthorized");
-      }
-    }
+    // console.log("register new user");
+    // let payload = {
+    //   email: "joao@gmail.com",
+    //   username: "joao",
+    //   password: "adminadmin"
+    // };
+    // let r = await instance.post("auth/users/", payload);
+    // console.log(r);
 
-    console.log("Login in");
-    let payload = {
-      username: "admin",
-      password: "adminadmin"
-    };
-    let r = await instance.post("api/token/", payload);
-    console.log(r);
+    // console.log("asking for data unauthorized");
+    // try {
+    //   let r = await instance.get("test/");
+    //   console.log(r);
+    // } catch (error) {
+    //   if (error.response.status === 401) {
+    //     console.log("Unauthorized");
+    //   }
+    // }
 
-    console.log("asking for data unauthorized");
-    try {
-      r = await instance.get("auth/");
-      console.log(r);
-    } catch (error) {
-      console.log(error.response);
-    }
+    // console.log("Login in");
+    // let payload = {
+    //   // username: "admin",
+    //   // password: "adminadmin",
+    //   username: "joao",
+    //   password: "adminadmin"
+    // };
+    // let r = await instance.post("api/token/", payload);
+    // console.log(r);
+
+    // console.log("asking for data unauthorized");
+    // try {
+    //   r = await instance.get("test/");
+    //   console.log(r);
+    // } catch (error) {
+    //   console.log(error.response);
+    // }
 
     // console.log("Login out");
     // try {
-    //   r = await instance.post("api/token/delete/");
+    //   let r = await instance.post("api/token/delete/");
     //   console.log(r);
     // } catch (error) {
     //   console.log(error.response);
     // }
 
     // Request refresh
-    console.log("requesting refresh");
-    try {
-      r = await instance.post("api/token/refresh/");
-      console.log(r);
-    } catch (error) {
-      console.log(error.response);
-    }
+    // console.log("requesting refresh");
+    // try {
+    //   r = await instance.post("api/token/refresh/");
+    //   console.log(r);
+    // } catch (error) {
+    //   console.log(error.response);
+    // }
 
     // console.log("Login out");
     // try {
-    //   r = await instance.post("api/token/delete/");
+    //   let r = await instance.post("api/token/delete/");
     //   console.log(r);
     // } catch (error) {
     //   console.log(error.response);
