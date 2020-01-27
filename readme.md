@@ -25,9 +25,11 @@ Kickstart 项目，用于在 Django 和 VueJ 之间使用基于 jwt cookie 的�
 ### WorkInProgress
 
 - JWT cookie auth
-- Unit tests setup
+- Unit tests setup for django & VueJs
 - Dockerization
 - AWS multicontainer setup
+- Sentry
+- Centralized User State with Vuex
 
 ### Roadmap
 
