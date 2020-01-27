@@ -15,7 +15,10 @@
       </button>
     </div>
 
-    <div v-else class="shadow-md max-w-xs mx-auto p-5 rounded-lg border">
+    <div
+      v-if="!login && !fetchingData"
+      class="shadow-md max-w-xs mx-auto p-5 rounded-lg border"
+    >
       <img class="p-3" src="@/assets/login.svg" alt="" />
       <p class="text-lg mb-1">You're not logged in.</p>
       <p class="text-sm">Please register or login.</p>
