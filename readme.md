@@ -1,4 +1,4 @@
-# Django VueJs Boilerplate
+# Django VueJs Cookie Jwt Boilerplate
 
 Kickstart project for rapid and secure prototyping with jwt cookie based authentication between Django and VueJs.
 
