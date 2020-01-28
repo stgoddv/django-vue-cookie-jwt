@@ -28,7 +28,6 @@ Kickstart 项目，用于在 Django 和 VueJ 之间使用基于 jwt cookie 的�
 - Dockerization
 - AWS multicontainer setup
 - Sentry
-- Centralized User State with Vuex
 - Oauth
 - Login protected views and redirect to correct path
 - Two step registering
