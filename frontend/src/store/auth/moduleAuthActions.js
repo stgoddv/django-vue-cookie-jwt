@@ -27,6 +27,25 @@ export default {
         .catch(error => reject(error));
     });
   },
+  register({ dispatch }, { username, email, password }) {
+    return new Promise((resolve, reject) => {
+      api
+        .post("auth/users/", {
+          username,
+          email,
+          password
+        })
+        .then(() => {
+          dispatch("login", {
+            username,
+            password
+          })
+            .then(response => resolve(response))
+            .catch(error => reject(error));
+        })
+        .catch(error => reject(error));
+    });
+  },
   fetchActiveUser({ commit }, noRedirect = false) {
     return new Promise((resolve, reject) => {
       api

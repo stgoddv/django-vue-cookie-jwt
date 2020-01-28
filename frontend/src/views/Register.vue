@@ -76,8 +76,6 @@
 </template>
 
 <script>
-import { plainApi } from "@/services/backend";
-
 export default {
   data() {
     return {
@@ -92,13 +90,9 @@ export default {
     async signup() {
       this.fetchingData = true;
       try {
-        await plainApi.post("auth/users/", {
+        await this.$store.dispatch("auth/register", {
           username: this.username,
           email: this.email,
-          password: this.password
-        });
-        await plainApi.post("api/token/", {
-          username: this.username,
           password: this.password
         });
         this.$router.push({ name: "home" });
