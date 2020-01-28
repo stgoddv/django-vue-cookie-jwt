@@ -1,4 +1,6 @@
 import axios from "axios";
+import router from "@/router";
+import store from "@/store/store.js";
 
 const options = {
   baseURL: "http://127.0.0.1:8000",
@@ -24,10 +26,17 @@ api.interceptors.response.use(
       error.response.config &&
       error.response.status === 401
     ) {
+      let query = error.response.config.url.split("?").pop();
       return plainApi
         .post("api/token/refresh/")
         .then(() => api.request(error.response.config))
-        .catch(error => Promise.reject(error));
+        .catch(error => {
+          store.commit("auth/REMOVE_ACTIVE_USER");
+          if (query !== "noRedirect") {
+            router.push({ name: "login" });
+          }
+          return Promise.reject(error);
+        });
     } else {
       return Promise.reject(error);
     }

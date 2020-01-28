@@ -67,8 +67,6 @@
 </template>
 
 <script>
-import { plainApi } from "@/services/backend";
-
 export default {
   data() {
     return {
@@ -82,7 +80,7 @@ export default {
     async login() {
       this.fetchingData = true;
       try {
-        await plainApi.post("api/token/", {
+        await this.$store.dispatch("auth/login", {
           username: this.username,
           password: this.password
         });
