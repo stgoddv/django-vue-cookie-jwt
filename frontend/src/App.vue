@@ -12,7 +12,12 @@
 <script>
 export default {
   created() {
-    this.$store.dispatch("auth/fetchActiveUser", true).catch(() => {});
+    let signIn = this.$store.state.auth.signIn;
+    if (signIn && signIn === true) {
+      this.$store.dispatch("auth/fetchActiveUser", true).catch(() => {});
+    } else {
+      this.$store.dispatch("auth/logout", true).catch(() => {});
+    }
   }
 };
 </script>
