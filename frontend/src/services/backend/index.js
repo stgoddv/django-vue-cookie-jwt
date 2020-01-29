@@ -50,4 +50,4 @@ apiNoRedirect.interceptors.response.use(
   error => handleError(error, true)
 );
 
-export { api, plainApi };
+export { api, apiNoRedirect, plainApi };
