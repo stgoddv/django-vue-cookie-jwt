@@ -1,4 +1,4 @@
-import { api, plainApi } from "@/services/backend";
+import { api, apiNoRedirect, plainApi } from "@/services/backend";
 
 export default {
   login({ dispatch }, { username, password }) {
@@ -46,10 +46,10 @@ export default {
         .catch(error => reject(error));
     });
   },
-  fetchActiveUser({ commit }, noRedirect = false) {
+  fetchActiveUser({ commit }) {
     return new Promise((resolve, reject) => {
-      api
-        .get(`auth/users/me${noRedirect ? "?noRedirect" : ""}`)
+      apiNoRedirect
+        .get("auth/users/me")
         .then(response => {
           commit("SET_ACTIVE_USER", response.data);
           resolve(response);

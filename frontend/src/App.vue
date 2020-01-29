@@ -14,9 +14,9 @@ export default {
   created() {
     let signIn = this.$store.state.auth.signIn;
     if (signIn && signIn === true) {
-      this.$store.dispatch("auth/fetchActiveUser", true).catch(() => {});
+      this.$store.dispatch("auth/fetchActiveUser").catch(() => {});
     } else {
-      this.$store.dispatch("auth/logout", true).catch(() => {});
+      this.$store.dispatch("auth/logout").catch(() => {});
     }
   }
 };
